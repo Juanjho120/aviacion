@@ -1,0 +1,59 @@
+<mat-card dynamicHeight>
+    <mat-card-content>
+        <form [formGroup]="form" #frmVuelo="ngForm" (ngSubmit)="operar()">
+            <mat-form-field appearance="fill" class="mat-form-field-operador">
+                <mat-label>Operador</mat-label>
+                <mat-select [(value)]="idOperador" formControlName="operador" required>
+                    <mat-option *ngFor="let o of (operadores$ | async)" [value]="o.idOperador">
+                        {{o.codigo}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="mat-form-field-numero">
+                <input matInput placeholder="Numero de vuelo" required formControlName="numero" type="number" min="0">
+                <small *ngIf="f().numero.errors?.minlength && f().numero.touched" class="invalido">Numero de vuelo invalido</small>
+            </mat-form-field>
+
+            <h4>Día de la semana que aplica:</h4>
+            <section class="section-checkbox">
+                <mat-checkbox [(ngModel)]="lunes" [ngModelOptions]="{standalone : true}">Lun</mat-checkbox>
+                <mat-checkbox [(ngModel)]="martes" [ngModelOptions]="{standalone : true}">Mar</mat-checkbox>
+                <mat-checkbox [(ngModel)]="miercoles" [ngModelOptions]="{standalone : true}">Mie</mat-checkbox>
+                <mat-checkbox [(ngModel)]="jueves" [ngModelOptions]="{standalone : true}">Jue</mat-checkbox>
+                <mat-checkbox [(ngModel)]="viernes" [ngModelOptions]="{standalone : true}">Vie</mat-checkbox>
+                <mat-checkbox [(ngModel)]="sabado" [ngModelOptions]="{standalone : true}">Sab</mat-checkbox>
+                <mat-checkbox [(ngModel)]="domingo" [ngModelOptions]="{standalone : true}">Dom</mat-checkbox>
+            </section>
+
+            <mat-form-field class="mat-form-field-fecha">
+                <input matInput [matDatepicker]="picker" placeholder="Fecha de ingreso" [min]="minFecha"
+                    value="fechaSeleccionada" (dateChange)="cambiarFecha($event)" formControlName="fechaIngreso" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <div>
+                <mat-form-field appearance="fill" class="mat-form-field-horarioSalida">
+                    <mat-label>Salida</mat-label>
+                    <mat-select [(value)]="idHorarioSalida" formControlName="horarioSalida" (selectionChange)="filtrarHorariosEntrada()" required>
+                        <mat-option *ngFor="let hs of (horariosSalida$ | async)" [value]="hs.idHorario">
+                            {{hs.hora}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="mat-form-field-horarioEntrada">
+                    <mat-label>Entrada</mat-label>
+                    <mat-select [(value)]="idHorarioEntrada" formControlName="horarioEntrada" required>
+                        <mat-option *ngFor="let he of horariosEntrada" [value]="he.idHorario">
+                            {{he.hora}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <button mat-flat-button color="primary" type="submit" [disabled]="evaluarBotonGuardar()">Guardar</button>
+        </form>
+    </mat-card-content>
+</mat-card>

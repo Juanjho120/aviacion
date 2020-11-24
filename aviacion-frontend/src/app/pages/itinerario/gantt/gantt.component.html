@@ -1,0 +1,798 @@
+<mat-card dynamicHeight>
+    <mat-card-content>
+        <form [formGroup]="form" #frmGantt="ngForm" (ngSubmit)="buscar()">
+            <mat-form-field class="mat-form-field-fecha">
+                <input matInput [matDatepicker]="picker" placeholder="Fecha" [min]="minFecha"
+                    value="fechaSeleccionada" (dateChange)="cambiarFecha($event)" formControlName="fecha" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <button mat-flat-button color="primary" type="submit" [disabled]="frmGantt.invalid">Buscar</button>
+        </form>
+        <div class="example-container mat-elevation-z8">
+            <mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef='operador' sticky>
+                    <mat-header-cell *matHeaderCellDef>Operador</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{row.operador.codigo}}</mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='numero' sticky>
+                    <mat-header-cell *matHeaderCellDef>Número de Vuelo</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{row.numero}}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='00:00'>
+                    <mat-header-cell *matHeaderCellDef>00:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 1 && 1 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='00:15'>
+                    <mat-header-cell *matHeaderCellDef>00:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 2 &&  2 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='00:30'>
+                    <mat-header-cell *matHeaderCellDef>00:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 3 &&  3 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='00:45'>
+                    <mat-header-cell *matHeaderCellDef>00:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 4 &&  4 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='01:00'>
+                    <mat-header-cell *matHeaderCellDef>01:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 5 &&  5 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='01:15'>
+                    <mat-header-cell *matHeaderCellDef>01:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 6 &&  6 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='01:30'>
+                    <mat-header-cell *matHeaderCellDef>01:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 7 &&  7 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='01:45'>
+                    <mat-header-cell *matHeaderCellDef>01:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 8 &&  8 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='02:00'>
+                    <mat-header-cell *matHeaderCellDef>02:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 9 &&  9 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='02:15'>
+                    <mat-header-cell *matHeaderCellDef>02:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 10 &&  10 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='02:30'>
+                    <mat-header-cell *matHeaderCellDef>02:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 11 &&  11 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='02:45'>
+                    <mat-header-cell *matHeaderCellDef>02:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 12 &&  12 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='03:00'>
+                    <mat-header-cell *matHeaderCellDef>03:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 13 &&  13 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='03:15'>
+                    <mat-header-cell *matHeaderCellDef>03:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 14 &&  14 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='03:30'>
+                    <mat-header-cell *matHeaderCellDef>03:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 15 &&  15 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='03:45'>
+                    <mat-header-cell *matHeaderCellDef>03:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 16 &&  16 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='04:00'>
+                    <mat-header-cell *matHeaderCellDef>04:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 17 &&  17 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='04:15'>
+                    <mat-header-cell *matHeaderCellDef>04:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 18 &&  18 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='04:30'>
+                    <mat-header-cell *matHeaderCellDef>04:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 19 &&  19 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='04:45'>
+                    <mat-header-cell *matHeaderCellDef>04:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 20 &&  20 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='05:00'>
+                    <mat-header-cell *matHeaderCellDef>05:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 21 &&  21 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='05:15'>
+                    <mat-header-cell *matHeaderCellDef>05:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 22 &&  22 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='05:30'>
+                    <mat-header-cell *matHeaderCellDef>05:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 23 &&  23 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='05:45'>
+                    <mat-header-cell *matHeaderCellDef>05:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 24 &&  24 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='06:00'>
+                    <mat-header-cell *matHeaderCellDef>06:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 25 &&  25 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='06:15'>
+                    <mat-header-cell *matHeaderCellDef>06:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 26 &&  26 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='06:30'>
+                    <mat-header-cell *matHeaderCellDef>06:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 27 &&  27 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='06:45'>
+                    <mat-header-cell *matHeaderCellDef>06:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 28 &&  28 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='07:00'>
+                    <mat-header-cell *matHeaderCellDef>07:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 29 &&  29 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='07:15'>
+                    <mat-header-cell *matHeaderCellDef>07:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 30 &&  30 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='07:30'>
+                    <mat-header-cell *matHeaderCellDef>07:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 31 &&  31 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='07:45'>
+                    <mat-header-cell *matHeaderCellDef>07:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 32 &&  32 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='08:00'>
+                    <mat-header-cell *matHeaderCellDef>08:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 33 &&  33 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='08:15'>
+                    <mat-header-cell *matHeaderCellDef>08:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 34 &&  34 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='08:30'>
+                    <mat-header-cell *matHeaderCellDef>08:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 35 &&  35 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='08:45'>
+                    <mat-header-cell *matHeaderCellDef>08:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 36 &&  36 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='09:00'>
+                    <mat-header-cell *matHeaderCellDef>09:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 37 &&  37 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='09:15'>
+                    <mat-header-cell *matHeaderCellDef>09:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 38 &&  38 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='09:30'>
+                    <mat-header-cell *matHeaderCellDef>09:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 39 &&  39 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='09:45'>
+                    <mat-header-cell *matHeaderCellDef>09:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 40 &&  40 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='10:00'>
+                    <mat-header-cell *matHeaderCellDef>10:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 41 &&  41 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='10:15'>
+                    <mat-header-cell *matHeaderCellDef>10:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 42 &&  42 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='10:30'>
+                    <mat-header-cell *matHeaderCellDef>10:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 43 &&  43 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='10:45'>
+                    <mat-header-cell *matHeaderCellDef>10:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 44 &&  44 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='11:00'>
+                    <mat-header-cell *matHeaderCellDef>11:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 45 &&  45 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='11:15'>
+                    <mat-header-cell *matHeaderCellDef>11:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 46 &&  46 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='11:30'>
+                    <mat-header-cell *matHeaderCellDef>11:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 47 &&  47 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='11:45'>
+                    <mat-header-cell *matHeaderCellDef>11:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 48 &&  48 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='12:00'>
+                    <mat-header-cell *matHeaderCellDef>12:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 49 &&  49 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='12:15'>
+                    <mat-header-cell *matHeaderCellDef>12:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 50 &&  50 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='12:30'>
+                    <mat-header-cell *matHeaderCellDef>12:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 51 &&  51 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='12:45'>
+                    <mat-header-cell *matHeaderCellDef>12:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 52 &&  52 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='13:00'>
+                    <mat-header-cell *matHeaderCellDef>13:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 53 &&  53 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='13:15'>
+                    <mat-header-cell *matHeaderCellDef>13:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 54 &&  54 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='13:30'>
+                    <mat-header-cell *matHeaderCellDef>13:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 55 &&  55 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='13:45'>
+                    <mat-header-cell *matHeaderCellDef>13:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 56 &&  56 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='14:00'>
+                    <mat-header-cell *matHeaderCellDef>14:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 57 &&  57 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='14:15'>
+                    <mat-header-cell *matHeaderCellDef>14:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 58 &&  58 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='14:30'>
+                    <mat-header-cell *matHeaderCellDef>14:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 59 &&  59 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='14:45'>
+                    <mat-header-cell *matHeaderCellDef>14:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 60 &&  60 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='15:00'>
+                    <mat-header-cell *matHeaderCellDef>15:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 61 &&  61 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='15:15'>
+                    <mat-header-cell *matHeaderCellDef>15:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 62 &&  62 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='15:30'>
+                    <mat-header-cell *matHeaderCellDef>15:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 63 &&  63 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='15:45'>
+                    <mat-header-cell *matHeaderCellDef>15:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 64 &&  64 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='16:00'>
+                    <mat-header-cell *matHeaderCellDef>16:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 65 &&  65 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='16:15'>
+                    <mat-header-cell *matHeaderCellDef>16:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 66 &&  66 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='16:30'>
+                    <mat-header-cell *matHeaderCellDef>16:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 67 &&  67 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='16:45'>
+                    <mat-header-cell *matHeaderCellDef>16:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 68 &&  68 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='17:00'>
+                    <mat-header-cell *matHeaderCellDef>17:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 69 &&  69 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='17:15'>
+                    <mat-header-cell *matHeaderCellDef>17:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 70 &&  70 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='17:30'>
+                    <mat-header-cell *matHeaderCellDef>17:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 71 &&  71 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='17:45'>
+                    <mat-header-cell *matHeaderCellDef>17:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 72 &&  72 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='18:00'>
+                    <mat-header-cell *matHeaderCellDef>18:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 73 &&  73 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='18:15'>
+                    <mat-header-cell *matHeaderCellDef>18:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 74 &&  74 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='18:30'>
+                    <mat-header-cell *matHeaderCellDef>18:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 75 &&  75 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='18:45'>
+                    <mat-header-cell *matHeaderCellDef>18:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 76 &&  76 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='19:00'>
+                    <mat-header-cell *matHeaderCellDef>19:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 77 &&  77 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='19:15'>
+                    <mat-header-cell *matHeaderCellDef>19:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 78 &&  78 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='19:30'>
+                    <mat-header-cell *matHeaderCellDef>19:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 79 &&  79 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='19:45'>
+                    <mat-header-cell *matHeaderCellDef>19:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 80 &&  80 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='20:00'>
+                    <mat-header-cell *matHeaderCellDef>20:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 81 &&  81 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='20:15'>
+                    <mat-header-cell *matHeaderCellDef>20:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 82 &&  82 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='20:30'>
+                    <mat-header-cell *matHeaderCellDef>20:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 83 &&  83 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='20:45'>
+                    <mat-header-cell *matHeaderCellDef>20:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 84 &&  84 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='21:00'>
+                    <mat-header-cell *matHeaderCellDef>21:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 85 &&  85 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='21:15'>
+                    <mat-header-cell *matHeaderCellDef>21:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 86 &&  86 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='21:30'>
+                    <mat-header-cell *matHeaderCellDef>21:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 87 &&  87 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='21:45'>
+                    <mat-header-cell *matHeaderCellDef>21:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 88 &&  88 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='22:00'>
+                    <mat-header-cell *matHeaderCellDef>22:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 89 &&  89 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='22:15'>
+                    <mat-header-cell *matHeaderCellDef>22:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 90 &&  90 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='22:30'>
+                    <mat-header-cell *matHeaderCellDef>22:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 91 &&  91 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='22:45'>
+                    <mat-header-cell *matHeaderCellDef>22:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 92 &&  92 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='23:00'>
+                    <mat-header-cell *matHeaderCellDef>23:00</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 93 &&  93 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='23:15'>
+                    <mat-header-cell *matHeaderCellDef>23:15</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 94 &&  94 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef='23:30'>
+                    <mat-header-cell *matHeaderCellDef>23:30</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 95 &&  95 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef='23:45'>
+                    <mat-header-cell *matHeaderCellDef>23:45</mat-header-cell>
+                    <mat-cell *matCellDef="let row" 
+                        [ngClass]="{
+                            'positive' : row.horarioSalida.idHorario <= 96 &&  96 <= row.horarioEntrada.idHorario
+                        }"></mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns; sticky : true"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+        </div>
+    </mat-card-content>
+</mat-card>

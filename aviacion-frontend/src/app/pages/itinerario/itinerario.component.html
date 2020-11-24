@@ -1,0 +1,19 @@
+<div class="container">
+    <h1 style="margin: 15px;">Itinerarios</h1>
+    <mat-tab-group dynamicHeight>
+        <mat-tab label="Ingreso de vuelos">
+            <div class="vuelo-ingreso-container">
+                <div class="vuelo-ingreso-card-container" dynamicHeight>
+                    <app-vuelo-ingreso></app-vuelo-ingreso>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Cronograma Gantt">
+            <div class="cronograma-gantt-container" dynamicHeight>
+                <div class="cronograma-gantt-card-container" dynamicHeight>
+                    <app-gantt></app-gantt>
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

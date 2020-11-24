@@ -1,0 +1,25 @@
+<div class="flex-container">
+    <mat-card class="mat-elevation-z10">
+        <mat-card-content>
+            <img src="assets/LAATS.jpg" width="150" style="margin: 1px">
+            <h1>Login</h1>
+            <form [formGroup]="formLogin" #frmLogin="ngForm" (ngSubmit)="login()">
+                <div style="text-align: left;">
+                    <mat-label>Usuario:</mat-label>
+                </div>
+                <mat-form-field class="mat-form-field-username" appearance="fill">
+                    <input matInput required formControlName="username">
+                </mat-form-field>
+
+                <div style="text-align: left;">
+                    <mat-label>Password:</mat-label>
+                </div>
+                <mat-form-field class="mat-form-field-password" appearance="fill">
+                    <input matInput required formControlName="password" type="password">
+                </mat-form-field>
+
+                <button mat-flat-button color="primary" type="submit" [disabled]="frmLogin.invalid">Iniciar Sesión</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

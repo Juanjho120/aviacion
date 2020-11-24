@@ -1,0 +1,42 @@
+<div class="example-container">
+  <mat-toolbar color="primary" class="example-toolbar" >
+
+      <h1 class="example-app-name" style="font-size: 40px;">CRONOGRAMA AUTOMATIZADO</h1>
+
+      <span class="example-spacer"></span>
+
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="loginService.cerrarSesion()">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Cerrar Sesión</span>
+        </button>
+      </mat-menu>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container">
+      <mat-sidenav #sidenav style="width: 250px" mode="side" [(opened)]="opened">
+          <img src="assets/LAATS.jpg" width="170" style="margin-left: 30px; margin-top: 10px">
+    
+          <button mat-menu-item routerLink="/inicio" style="cursor: pointer">
+              <mat-icon>home</mat-icon>
+              <span>Inicio</span>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item routerLink="/itinerarios" style="cursor: pointer">
+              <mat-icon>airplanemode_active</mat-icon>
+              <span>Itinerarios</span>
+          </button>
+          <mat-divider></mat-divider>
+      </mat-sidenav>
+      
+      <mat-sidenav-content>
+          <router-outlet></router-outlet>
+      </mat-sidenav-content>
+
+  </mat-sidenav-container>
+
+</div>

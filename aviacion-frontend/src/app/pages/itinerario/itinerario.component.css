@@ -1,0 +1,23 @@
+.container {
+    margin: 20px;
+    border-style: ridge;
+    border-width: 1px;
+}
+
+.vuelo-ingreso-container {
+    margin: 20px;
+}
+
+.cronograma-gantt-container {
+    margin: 20px;
+}
+
+.vuelo-ingreso-card-container {
+    margin: 15px;
+    width: 450px;
+}
+
+.cronograma-gantt-card-container {
+    margin: 15px;
+    width: 98%;
+}

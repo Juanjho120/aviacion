@@ -1,0 +1,40 @@
+.mat-form-field-operador {
+    width: 100%;
+}
+
+.mat-form-field-numero {
+    width: 100%;
+}
+
+.mat-form-field-horarioSalida {
+    margin-right: 20px;
+    width: 47%;
+}
+
+.mat-form-field-horarioEntrada {
+    width: 47%;
+}
+
+.mat-form-field-fecha {
+    width: 100%;
+}
+
+.mat-flat-button {
+    width: 100%;
+}
+
+.section-checkbox {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 20px;
+    margin-bottom: 10px;
+}
+
+.mat-checkbox {
+    margin: 5px;
+}
+
+.invalido {
+    color : red;
+}

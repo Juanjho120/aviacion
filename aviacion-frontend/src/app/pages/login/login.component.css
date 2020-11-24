@@ -1,0 +1,24 @@
+.flex-container {
+    display: flex;
+    height: 100%;
+    background-color: gainsboro;
+    justify-content: center;
+    align-items: center;
+}
+
+.mat-card {
+    width: 350px;
+    height: 400px;
+    text-align: center;
+
+}
+
+.mat-form-field {
+    width: 90%;
+    margin: 10px;
+}
+
+.mat-flat-button {
+    width: 200px;
+    height: 50px;
+}

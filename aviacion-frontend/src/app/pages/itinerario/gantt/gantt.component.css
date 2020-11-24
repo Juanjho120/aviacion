@@ -1,0 +1,32 @@
+.mat-form-field-fecha {
+    margin-right: 20px;
+    width: 150px;
+}
+
+.example-container {
+    overflow: auto;
+}
+
+.mat-header-cell, .mat-cell {
+    min-width: 60px;
+    box-sizing: border-box;
+}
+
+.mat-column-filler {
+    padding: 0 8px;
+    font-size: 10px;
+    text-align: center;
+}
+
+.mat-table-sticky {
+    background: #59abfd;
+    opacity: 1;
+}
+
+.positive {
+    background-color: chartreuse;
+}
+
+.mat-header-row, .mat-footer-row, .mat-row {
+    min-width: 5880px; /* 24 columns, 80px each */
+}
